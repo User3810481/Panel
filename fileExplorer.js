@@ -125,7 +125,7 @@ function renderFileExplorerContent(data, username, password) {
         </button>
       </div>
     </div>
-  `;
+    <div class="file-items-scroll-area">`; // New wrapper for scrollable content
   
   if (currentViewMode === 'grid') {
     html += '<div class="file-grid">';
@@ -225,6 +225,7 @@ function renderFileExplorerContent(data, username, password) {
   }
   
   html += `
+    </div> <!-- End of .file-items-scroll-area -->
     <div class="status-bar">
       <span>${totalItems} 個項目</span>
       <span>${data.folders.length} 個資料夾，${data.files.length} 個檔案</span>
