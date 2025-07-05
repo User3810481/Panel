@@ -755,3 +755,242 @@ hr {
   margin-top: 8px;
   font-size: 14px;
 }
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  body {
+    padding: 10px; /* Reduce padding on smaller screens */
+  }
+
+  #main-container {
+    padding: 20px; /* Reduce container padding */
+    min-height: auto; /* Allow height to adjust to content */
+    max-width: 100%; /* Ensure it takes full width */
+    margin: 0; /* Remove potential margin that pushes it */
+  }
+
+  h1 {
+    font-size: 2rem; /* Smaller heading */
+    margin-bottom: 20px;
+  }
+
+  form {
+    gap: 16px; /* Slightly smaller gap in forms */
+  }
+
+  input[type="text"], 
+  input[type="password"],
+  input[type="number"],
+  textarea {
+    padding: 12px 16px; /* Slightly smaller padding */
+    font-size: 14px; /* Smaller font size for inputs */
+  }
+
+  button {
+    padding: 12px 24px; /* Smaller button padding */
+    font-size: 14px; /* Smaller button font size */
+  }
+
+  .user-info {
+    flex-direction: column; /* Stack user info and logout button */
+    align-items: flex-start;
+    gap: 10px;
+    padding: 12px 16px;
+    margin-bottom: 16px;
+  }
+
+  #logout-btn {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+
+  .module-tabs button {
+    padding: 8px 15px; /* Smaller tab padding */
+    font-size: 14px;
+  }
+
+  /* File Explorer specific adjustments */
+  #browse-form {
+    flex-direction: column; /* Stack path input and button */
+    align-items: stretch; /* Stretch items to full width */
+    gap: 12px;
+    padding: 12px;
+  }
+
+  #browse-form input {
+    margin-top: 0; /* Remove top margin */
+  }
+
+  #browse-form button {
+    width: 100%; /* Make button full width */
+    margin-top: 0;
+  }
+
+  .toolbar {
+    flex-wrap: wrap; /* Ensure buttons wrap */
+    padding: 8px 12px;
+    gap: 6px; /* Slightly smaller gap */
+  }
+
+  .toolbar button {
+    padding: 6px 12px;
+    font-size: 12px;
+    gap: 4px;
+  }
+
+  .file-explorer-header {
+    flex-direction: column; /* Stack breadcrumb and view controls */
+    align-items: flex-start;
+    padding: 10px 12px;
+    gap: 8px;
+  }
+
+  .path-breadcrumb {
+    font-size: 13px; /* Smaller breadcrumb font */
+    margin-bottom: 0; /* Adjust margin if stacking */
+  }
+
+  .view-controls {
+    width: 100%; /* Take full width for easier tapping */
+    justify-content: flex-start; /* Align buttons to start */
+  }
+
+  .view-btn {
+    padding: 5px 10px;
+    font-size: 11px;
+  }
+
+  .file-grid {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); /* Smaller grid items */
+    gap: 12px;
+    padding: 15px;
+  }
+
+  .file-item {
+    padding: 10px 5px;
+  }
+
+  .file-icon {
+    font-size: 40px; /* Smaller icons */
+  }
+
+  .file-name {
+    font-size: 11px; /* Smaller file name font */
+  }
+
+  .file-list table {
+    min-width: 500px; /* Force table to have minimum width for horizontal scroll */
+  }
+
+  .file-list th,
+  .file-list td {
+    padding: 8px 10px; /* Further reduce table cell padding for compact view */
+    font-size: 11px; /* Further reduce table font size */
+  }
+
+  .file-list th:nth-child(1), .file-list td:nth-child(1) {
+    width: 50%; /* Give more space to name */
+    max-width: 150px; /* Limit name column width to prevent excessive size */
+  }
+  .file-list th:nth-child(2), .file-list td:nth-child(2) {
+    width: auto;
+    min-width: 90px; /* Date */
+  }
+  .file-list th:nth-child(3), .file-list td:nth-child(3) {
+    width: auto;
+    min-width: 70px; /* Type */
+  }
+  .file-list th:nth-child(4), .file-list td:nth-child(4) {
+    width: auto;
+    min-width: 60px; /* Size */
+  }
+  .file-list th:nth-child(5), .file-list td:nth-child(5) {
+    width: auto;
+    min-width: 80px; /* Actions */
+  }
+
+  .file-list .file-actions button {
+    padding: 3px 6px; /* Even smaller buttons within table actions */
+    font-size: 10px;
+  }
+
+  /* Adjustments for forms within #browse-message and #command-form-area */
+  #browse-message form,
+  #command-form-area form {
+    padding: 15px;
+    margin: 10px 0;
+    gap: 12px;
+  }
+
+  #browse-message form label {
+    font-size: 0.8rem;
+  }
+
+  #browse-message form input[type="text"],
+  #browse-message form textarea,
+  #browse-message form input[type="number"] {
+    padding: 10px 14px;
+    font-size: 13px;
+  }
+
+  #browse-message .file-content,
+  .command-output {
+    padding: 10px 15px;
+    margin: 10px 0;
+  }
+
+  #browse-message .file-path {
+    font-size: 13px;
+  }
+
+  #browse-message code,
+  .command-result pre {
+    padding: 10px;
+    font-size: 11px;
+    max-height: 200px; /* Reduce max height for file content/command output */
+  }
+
+  #browse-message .form-actions,
+  #command-form-area .form-actions {
+    flex-direction: column; /* Stack buttons in form actions */
+    gap: 8px;
+    margin-top: 15px;
+  }
+
+  #browse-message .form-actions button,
+  #command-form-area .form-actions button {
+    width: 100%; /* Make action buttons full width */
+    padding: 10px 15px;
+    font-size: 13px;
+  }
+
+  .command-toolbar {
+    padding: 10px;
+    gap: 6px;
+  }
+  .command-toolbar button {
+    padding: 7px 14px;
+    font-size: 12px;
+  }
+
+  .more-options-toggle {
+    text-align: left; /* Align toggle to left for better mobile usability */
+    margin-top: 0;
+    margin-bottom: 5px;
+  }
+
+  #more-options {
+    padding: 12px 15px;
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
+
+  #more-options label {
+    font-size: 0.8rem;
+    margin-bottom: 10px;
+  }
+  #more-options input {
+    font-size: 13px;
+    margin-top: 6px;
+  }
+}
