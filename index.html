@@ -1,0 +1,54 @@
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Computer Control API 操作介面</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cal+Sans:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script type="importmap">
+    {
+      "imports": {
+        "./constants.js": "./constants.js",
+        "./utils.js": "./utils.js",
+        "./auth.js": "./auth.js",
+        "./fileExplorer.js": "./fileExplorer.js",
+        "./commandHandlers.js": "./commandHandlers.js"
+      }
+    }
+  </script>
+</head>
+<body>
+  <div id="main-container">
+    <h1>系統登入</h1>
+    <form id="login-form" autocomplete="off">
+      <label>
+        使用者帳號
+        <input type="text" id="username" placeholder="請輸入您的帳號" required autofocus />
+      </label>
+      <label>
+        登入密碼
+        <input type="password" id="password" placeholder="請輸入您的密碼" required />
+      </label>
+
+      <div class="more-options-toggle">
+        <button type="button" id="toggle-more-options">更多選項 ▼</button>
+      </div>
+
+      <div id="more-options" class="hidden">
+        <label>
+          API 主機 (IP/Domain)
+          <input type="text" id="api-ip" placeholder="例如: 192.168.1.1" value="localhost" />
+        </label>
+        <label>
+          API 埠號
+          <input type="number" id="api-port" placeholder="例如: 19222" value="19222" />
+        </label>
+      </div>
+
+      <button type="submit" id="login-btn">登入系統</button>
+      <div id="login-message"></div>
+    </form>
+  </div>
+  <script type="module" src="./auth.js"></script>
+</body>
+</html>
