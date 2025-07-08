@@ -756,6 +756,31 @@ hr {
   font-size: 14px;
 }
 
+.screen-preview-container {
+  margin: 20px 0;
+  background: #0a0a0a;
+  border: 1px solid #333;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.screen-preview-container img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+#cmd-command,
+#powershell-command {
+  font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', monospace;
+  min-height: 100px;
+  resize: vertical;
+  line-height: 1.5;
+  white-space: pre;
+  overflow-wrap: normal;
+  overflow-x: auto;
+}
+
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
   body {
@@ -914,7 +939,26 @@ hr {
     font-size: 10px;
   }
 
-  /* Adjustments for forms within #browse-message and #command-form-area */
+  .screen-preview-container {
+    margin: 10px 0;
+  }
+
+  #cmd-command,
+  #powershell-command {
+    min-height: 80px;
+    font-size: 13px;
+  }
+  
+  .command-toolbar {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  
+  .command-toolbar button {
+    flex: 1 1 calc(50% - 6px);
+    min-width: 120px;
+  }
+  
   #browse-message form,
   #command-form-area form {
     padding: 15px;

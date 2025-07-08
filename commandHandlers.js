@@ -15,6 +15,7 @@ export function renderCommandCenter(username, password) {
       <button id="btn-open-file">📂 開啟檔案</button>
       <button id="btn-run-cmd">命令行 (CMD)</button>
       <button id="btn-run-powershell">PowerShell</button>
+      <button id="btn-screen-capture">📸 螢幕擷取</button>
     </div>
     <div id="command-output" class="command-output"></div>
     <div id="command-form-area"></div>
@@ -27,6 +28,7 @@ export function renderCommandCenter(username, password) {
   document.getElementById('btn-open-file').onclick = () => showCommandForm('open-file');
   document.getElementById('btn-run-cmd').onclick = () => showCommandForm('run-cmd');
   document.getElementById('btn-run-powershell').onclick = () => showCommandForm('run-powershell');
+  document.getElementById('btn-screen-capture').onclick = () => showCommandForm('screen-capture');
 
   // Default view
   showCommandForm('kill-process');
@@ -123,7 +125,7 @@ function showCommandForm(commandType) {
       formHtml = `
         <form id="run-cmd-form">
           <label>CMD 命令
-            <input type="text" id="cmd-command" placeholder="例如: dir C:\\" required />
+            <textarea id="cmd-command" placeholder="例如: dir C:\\" required></textarea>
           </label>
           <div class="form-actions">
             <button type="submit">執行 CMD</button>
@@ -137,7 +139,7 @@ function showCommandForm(commandType) {
       formHtml = `
         <form id="run-powershell-form">
           <label>PowerShell 命令
-            <input type="text" id="powershell-command" placeholder="例如: Get-Process" required />
+            <textarea id="powershell-command" placeholder="例如: Get-Process" required></textarea>
           </label>
           <div class="form-actions">
             <button type="submit">執行 PowerShell</button>
@@ -146,6 +148,18 @@ function showCommandForm(commandType) {
       `;
       formArea.innerHTML = formHtml;
       document.getElementById('run-powershell-form').onsubmit = (e) => handleRunPowershell(e, currentUser.username, currentUser.password);
+      break;
+    case 'screen-capture':
+      formHtml = `
+        <form id="screen-capture-form">
+          <div id="screen-preview"></div>
+          <div class="form-actions">
+            <button type="submit">擷取螢幕畫面</button>
+          </div>
+        </form>
+      `;
+      formArea.innerHTML = formHtml;
+      document.getElementById('screen-capture-form').onsubmit = (e) => handleScreenCapture(e, currentUser.username, currentUser.password);
       break;
   }
 }
@@ -222,4 +236,34 @@ async function handleRunPowershell(e, username, password) {
   e.preventDefault();
   const command = document.getElementById('powershell-command').value.trim();
   await sendCommand('powershell/run', { command }, 'PowerShell 命令執行成功！', 'PowerShell 命令執行失敗');
+}
+
+async function handleScreenCapture(e, username, password) {
+  e.preventDefault();
+  const outputArea = document.getElementById('command-output');
+  const previewArea = document.getElementById('screen-preview');
+  clearMessage('command-output');
+  showSuccess("擷取螢幕中...", 'command-output');
+
+  try {
+    const res = await fetch(API_URL + 'screen/get', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({ username, password })
+    });
+
+    if (!res.ok) throw new Error('Screenshot failed');
+
+    const blob = await res.blob();
+    const imageUrl = URL.createObjectURL(blob);
+    
+    previewArea.innerHTML = `
+      <div class="screen-preview-container">
+        <img src="${imageUrl}" alt="Screen Capture" />
+      </div>
+    `;
+    showSuccess("螢幕擷取成功！", 'command-output');
+  } catch (e) {
+    showError(`螢幕擷取失敗：${e.message}`, 'command-output');
+  }
 }
